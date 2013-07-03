@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Payment
+ * @package     Quafzi_CustomerPaymentFilter
+ * @author      Thomas Birke <tbirke@netextreme.de>
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Quafzi_CustomerPaymentFilter>
+            <version>0.1.0</version>
+        </Quafzi_CustomerPaymentFilter>
+    </modules>
+    <global>       
+        <models>
+            <customerpaymentfilter>
+                <class>Quafzi_CustomerPaymentFilter_Model</class>
+            </customerpaymentfilter>
+        </models>
+        <resources>
+            <customerpaymentfilter_setup>
+                <setup>
+                    <module>Quafzi_CustomerPaymentFilter</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </customerpaymentfilter_setup>
+        </resources>       
+    </global>
+    <frontend>
+		<events>
+			<payment_method_is_active>
+				<observers>
+					<customerpaymentfilter>
+						<type>singleton</type>
+						<class>customerpaymentfilter/observer</class>
+						<method>paymentMethodIsAllowed</method>
+					</customerpaymentfilter>
+				</observers>
+			</payment_method_is_active>
+		</events>
+    </frontend>
+</config>
