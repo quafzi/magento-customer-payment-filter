@@ -17,8 +17,7 @@ class Quafzi_CustomerPaymentFilter_Model_System_Config_Source_Payment_Methods
      */
     public function toOptionArray()
     {
-        return Mage::helper('payment')
-            ->getPaymentMethodList(true, true, true);
+        return Mage::helper('payment')->getPaymentMethodList(true, true, true);
     }
 
     public function getAllOptions()

@@ -1,9 +1,9 @@
 <?php
 $installer = $this;
 $installer->startSetup();
- 
+
 $setup = Mage::getModel('customer/entity_setup', 'core_setup');
- 
+
 $setup->addAttribute('customer', 'denied_payment_methods', array(
     'type'             => 'text',
     'input'            => 'multiselect',
@@ -21,5 +21,5 @@ Mage::getSingleton('eav/config')
     ->getAttribute('customer', 'denied_payment_methods')
     ->setData('used_in_forms', array('adminhtml_customer'))
     ->save();
- 
+
 $installer->endSetup();

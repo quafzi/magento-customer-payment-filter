@@ -13,7 +13,7 @@
             <version>0.1.0</version>
         </Quafzi_CustomerPaymentFilter>
     </modules>
-    <global>       
+    <global>
         <models>
             <customerpaymentfilter>
                 <class>Quafzi_CustomerPaymentFilter_Model</class>
@@ -29,19 +29,19 @@
                     <use>core_setup</use>
                 </connection>
             </customerpaymentfilter_setup>
-        </resources>       
+        </resources>
     </global>
     <frontend>
-		<events>
-			<payment_method_is_active>
-				<observers>
-					<customerpaymentfilter>
-						<type>singleton</type>
-						<class>customerpaymentfilter/observer</class>
-						<method>paymentMethodIsAllowed</method>
-					</customerpaymentfilter>
-				</observers>
-			</payment_method_is_active>
-		</events>
+        <events>
+            <payment_method_is_active>
+                <observers>
+                    <customerpaymentfilter>
+                        <type>singleton</type>
+                        <class>customerpaymentfilter/observer</class>
+                        <method>paymentMethodIsAllowed</method>
+                    </customerpaymentfilter>
+                </observers>
+            </payment_method_is_active>
+        </events>
     </frontend>
 </config>

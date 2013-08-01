@@ -9,25 +9,24 @@
  */
 class Quafzi_CustomerPaymentFilter_Model_Observer
 {
-	public function paymentMethodIsAllowed($observer)
-	{
-		$checkResult = $observer->getEvent()->getResult();
-		$method      = $observer->getEvent()->getMethodInstance();
+    public function paymentMethodIsAllowed($observer)
+    {
+        $checkResult = $observer->getEvent()->getResult();
+        $method      = $observer->getEvent()->getMethodInstance();
         $quote       = $observer->getEvent()->getQuote();
 
         if ($checkResult->isAvailable
             && $quote->getCustomer()
             && $quote->getCustomer()->getId() // customer exists
-        )
-		{
+        ) {
             $deniedMethods = array_filter(explode(
                 ',',
                 $quote->getCustomer()->getDeniedPaymentMethods()
             ));
-			if (in_array($method->getCode(), $deniedMethods))
-			{
-				$checkResult->isAvailable = false;
-			}
-		}
+            if (in_array($method->getCode(), $deniedMethods))
+            {
+                $checkResult->isAvailable = false;
+            }
+        }
     }
 }
