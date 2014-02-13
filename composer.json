@@ -1,0 +1,15 @@
+{
+    "name": "quafzi/customer-payment-filter",
+    "type": "magento-module",
+    "description": "This Magento extension allows you to deny specific payment methods for single customers.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Birke",
+            "email": "quafzi@netextreme.de"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
