@@ -67,7 +67,6 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
                 'denied_payment_methods' => array(
                     'name'   => 'denied_payment_methods',
                     'type'   => 'multiselect',
-                    'class'  => 'required-entry',
                     'label'  => Mage::helper('customerpaymentfilter') -> __('Denied Payment Methods'),
                     'values' => $types
                 )
