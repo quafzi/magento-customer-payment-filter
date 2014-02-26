@@ -14,6 +14,17 @@
         </Quafzi_CustomerPaymentFilter>
     </modules>
     <global>
+        <blocks>
+            <customerpaymentfilter>
+                <class>Quafzi_CustomerPaymentFilter_Block</class>
+            </customerpaymentfilter>
+            <adminhtml>
+                <rewrite>
+                    <!-- overwrite Mage_Adminhtml_Block_Customer_Grid to add denied payment methods to grid -->
+                    <customer_grid>Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid</customer_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
         <models>
             <customerpaymentfilter>
                 <class>Quafzi_CustomerPaymentFilter_Model</class>
