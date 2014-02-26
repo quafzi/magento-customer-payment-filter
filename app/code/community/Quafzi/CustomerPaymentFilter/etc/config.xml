@@ -25,6 +25,11 @@
                 </rewrite>
             </adminhtml>
         </blocks>
+        <helpers>
+            <customerpaymentfilter>
+                <class>Quafzi_CustomerPaymentFilter_Helper</class>
+            </customerpaymentfilter>
+        </helpers>
         <models>
             <customerpaymentfilter>
                 <class>Quafzi_CustomerPaymentFilter_Model</class>
@@ -55,4 +60,26 @@
             </payment_method_is_active>
         </events>
     </frontend>
+    <admin>
+        <routers>
+            <customerpaymentfilter>
+                <use>admin</use>
+                <args>
+                    <module>Quafzi_CustomerPaymentFilter</module>
+                    <frontName>customerpaymentfilter</frontName>
+                </args>
+            </customerpaymentfilter>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Quafzi_CustomerPaymentFilter>
+                    <files>
+                        <default>Quafzi_CustomerPaymentFilter.csv</default>
+                    </files>
+                </Quafzi_CustomerPaymentFilter>
+            </modules>
+        </translate>
+    </adminhtml>
 </config>

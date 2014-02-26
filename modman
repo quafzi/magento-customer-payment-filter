@@ -1,2 +1,3 @@
 app/code/community/Quafzi/CustomerPaymentFilter app/code/community/Quafzi/CustomerPaymentFilter
 app/etc/modules/Quafzi_CustomerPaymentFilter.xml app/etc/modules/Quafzi_CustomerPaymentFilter.xml
+app/locale/de_DE/Quafzi_CustomerPaymentFilter.csv app/locale/de_DE/Quafzi_CustomerPaymentFilter.csv

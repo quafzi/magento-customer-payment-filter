@@ -27,7 +27,7 @@ class Quafzi_CustomerPaymentFilter_Block_Widget_Grid_Column_Renderer_Methods
                         $res[] = $this->escapeHtml($item);
                     }
                 }
-                return implode(', ', $res);
+                return '<ul><li>' . implode(',</li><li>', $res) . '</li></ul>';
             } elseif (isset($options[$value])) {
                 return $this->escapeHtml($options[$value]);
             } elseif (in_array($value, $options)) {

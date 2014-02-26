@@ -29,7 +29,7 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
             $paymentMethods = Mage::helper('payment')->getPaymentMethodList(true);
             parent::addColumn('denied_payment_methods',
                 array(
-                    'header'                    => 'Gesperrte Zahlungsarten',
+                    'header'                    => Mage::helper('customerpaymentfilter') -> __('Denied Payment Methods'),
                     'index'                     => 'denied_payment_methods',
                     'width'                     => '150px',
                     'type'                      => 'options',
@@ -50,5 +50,30 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
         }
      
         $this->getCollection()->addFieldToFilter('denied_payment_methods', array('finset' => $value));
+    }
+
+    protected function _prepareMassaction()
+    {
+        parent::_prepareMassaction();
+
+        $types = Mage::getModel('customerpaymentfilter/system_config_source_payment_methods')
+            ->toOptionArray();
+        unset($types['']);
+
+        $this->getMassactionBlock()->addItem('change_denied_payment_methods', array(
+            'label'      => Mage::helper('customerpaymentfilter')->__('Change denied payment methods'),
+            'url'        => $this->getUrl('customerpaymentfilter/admin/massChange'),
+            'additional' => array(
+                'denied_payment_methods' => array(
+                    'name'   => 'denied_payment_methods',
+                    'type'   => 'multiselect',
+                    'class'  => 'required-entry',
+                    'label'  => Mage::helper('customerpaymentfilter') -> __('Denied Payment Methods'),
+                    'values' => $types
+                )
+            )
+        ));
+
+        return $this;
     }
 }
