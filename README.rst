@@ -1,4 +1,4 @@
-This extension allows you to deny specific payment methods for single customers.
+This extension lets you allow only specific payment methods for single customers.
 
 Installation
 ------------
@@ -19,4 +19,4 @@ Uninstall
 Caution: Your shop won't work after removing this extension, because Magento offers no support for removal.
 You need to run the following query before removing this extension:
 
-    DELETE FROM eav_attribute WHERE attribute_code="denied_payment_methods"
+    DELETE FROM eav_attribute WHERE attribute_code="allowed_payment_methods"

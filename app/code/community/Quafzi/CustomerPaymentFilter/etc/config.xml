@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Quafzi_CustomerPaymentFilter>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
         </Quafzi_CustomerPaymentFilter>
     </modules>
     <global>
@@ -20,7 +20,7 @@
             </customerpaymentfilter>
             <adminhtml>
                 <rewrite>
-                    <!-- overwrite Mage_Adminhtml_Block_Customer_Grid to add denied payment methods to grid -->
+                    <!-- overwrite Mage_Adminhtml_Block_Customer_Grid to add allowed payment methods to grid -->
                     <customer_grid>Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid</customer_grid>
                 </rewrite>
             </adminhtml>

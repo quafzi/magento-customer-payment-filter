@@ -18,7 +18,7 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
      */
     public function setCollection($collection)
     {
-        $collection->addAttributeToSelect('denied_payment_methods');
+        $collection->addAttributeToSelect('allowed_payment_methods');
         return parent::setCollection($collection);
     }
 
@@ -27,15 +27,15 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
         if ($name == 'action')
         {
             $paymentMethods = Mage::helper('payment')->getPaymentMethodList(true);
-            parent::addColumn('denied_payment_methods',
+            parent::addColumn('allowed_payment_methods',
                 array(
-                    'header'                    => Mage::helper('customerpaymentfilter') -> __('Denied Payment Methods'),
-                    'index'                     => 'denied_payment_methods',
+                    'header'                    => Mage::helper('customerpaymentfilter') -> __('Allowed Payment Methods'),
+                    'index'                     => 'allowed_payment_methods',
                     'width'                     => '150px',
                     'type'                      => 'options',
                     'renderer'                  => 'customerpaymentfilter/widget_grid_column_renderer_methods',
                     'options'                   => $paymentMethods,
-                    'filter_condition_callback' => array($this, '_filterDeniedPaymentMethods'),
+                    'filter_condition_callback' => array($this, '_filterAllowedPaymentMethods'),
                 )
             );
         }
@@ -43,13 +43,13 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
         return parent::addColumn($name, $params);
     }
 
-    protected function _filterDeniedPaymentMethods($collection, $column)
+    protected function _filterAllowedPaymentMethods($collection, $column)
     {
         if (!$value = $column->getFilter()->getValue()) {
             return;
         }
      
-        $this->getCollection()->addFieldToFilter('denied_payment_methods', array('finset' => $value));
+        $this->getCollection()->addFieldToFilter('allowed_payment_methods', array('finset' => $value));
     }
 
     protected function _prepareMassaction()
@@ -60,14 +60,14 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
             ->toOptionArray();
         unset($types['']);
 
-        $this->getMassactionBlock()->addItem('change_denied_payment_methods', array(
-            'label'      => Mage::helper('customerpaymentfilter')->__('Change denied payment methods'),
+        $this->getMassactionBlock()->addItem('change_allowed_payment_methods', array(
+            'label'      => Mage::helper('customerpaymentfilter')->__('Change allowed payment methods'),
             'url'        => $this->getUrl('customerpaymentfilter/admin/massChange'),
             'additional' => array(
-                'denied_payment_methods' => array(
-                    'name'   => 'denied_payment_methods',
+                'allowed_payment_methods' => array(
+                    'name'   => 'allowed_payment_methods',
                     'type'   => 'multiselect',
-                    'label'  => Mage::helper('customerpaymentfilter') -> __('Denied Payment Methods'),
+                    'label'  => Mage::helper('customerpaymentfilter') -> __('Allowed Payment Methods'),
                     'values' => $types
                 )
             )

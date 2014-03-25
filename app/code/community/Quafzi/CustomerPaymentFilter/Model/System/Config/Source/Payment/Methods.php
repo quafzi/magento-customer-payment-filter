@@ -25,4 +25,3 @@ class Quafzi_CustomerPaymentFilter_Model_System_Config_Source_Payment_Methods
         return $this->toOptionArray();
     }
 }
-

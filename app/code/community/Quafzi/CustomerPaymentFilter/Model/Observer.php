@@ -19,13 +19,13 @@ class Quafzi_CustomerPaymentFilter_Model_Observer
             && $quote->getCustomer()
             && $quote->getCustomer()->getId() // customer exists
         ) {
-            $deniedMethods = array_filter(explode(
-                ',',
-                $quote->getCustomer()->getDeniedPaymentMethods()
-            ));
-            if (in_array($method->getCode(), $deniedMethods))
-            {
-                $checkResult->isAvailable = false;
+            // if there is no method allowed explicitly, we expect all methods to be allowed
+            $allowedMethods = $quote->getCustomer()->getAllowedPaymentMethods();
+            if ($allowedMethods) {
+                $allowedMethods = explode(',', $allowedMethods);
+                if (false === in_array($method->getCode(), $allowedMethods)) {
+                    $checkResult->isAvailable = false;
+                }
             }
         }
     }
