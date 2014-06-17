@@ -14,13 +14,19 @@ class Quafzi_CustomerPaymentFilter_Model_Observer
         $checkResult = $observer->getEvent()->getResult();
         $method      = $observer->getEvent()->getMethodInstance();
         $quote       = $observer->getEvent()->getQuote();
+        $customer    = Mage::getSingleton('customer/session')->getCustomer();
+        if (is_null($customer) || is_null($customer->getId())) {
+            if ($quote && $quote->getCustomer() && $quote->getCustomer()->getId()) {
+                $customer = $quote->getCustomer();
+            }
+        }
 
         if ($checkResult->isAvailable
-            && $quote->getCustomer()
-            && $quote->getCustomer()->getId() // customer exists
+            && $customer
+            && $customer->getId() // customer exists
         ) {
             // if there is no method allowed explicitly, we expect all methods to be allowed
-            $allowedMethods = $quote->getCustomer()->getAllowedPaymentMethods();
+            $allowedMethods = $customer->getAllowedPaymentMethods();
             if ($allowedMethods) {
                 $allowedMethods = explode(',', $allowedMethods);
                 if (false === in_array($method->getCode(), $allowedMethods)) {
