@@ -62,13 +62,13 @@
     </frontend>
     <admin>
         <routers>
-            <customerpaymentfilter>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Quafzi_CustomerPaymentFilter</module>
-                    <frontName>customerpaymentfilter</frontName>
+                    <modules>
+                        <customerpaymentfilter before="Mage_Adminhtml">Quafzi_CustomerPaymentFilter_Adminhtml</customerpaymentfilter>
+                    </modules>
                 </args>
-            </customerpaymentfilter>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
