@@ -48,7 +48,7 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
         if (!$value = $column->getFilter()->getValue()) {
             return;
         }
-     
+
         $this->getCollection()->addFieldToFilter('allowed_payment_methods', array('finset' => $value));
     }
 
@@ -62,7 +62,7 @@ class Quafzi_CustomerPaymentFilter_Block_Adminhtml_Customer_Grid
 
         $this->getMassactionBlock()->addItem('change_allowed_payment_methods', array(
             'label'      => Mage::helper('customerpaymentfilter')->__('Change allowed payment methods'),
-            'url'        => $this->getUrl('customerpaymentfilter/admin/massChange'),
+            'url'        => $this->getUrl('adminhtml/customerpaymentfilter/massChange'),
             'additional' => array(
                 'allowed_payment_methods' => array(
                     'name'   => 'allowed_payment_methods',
